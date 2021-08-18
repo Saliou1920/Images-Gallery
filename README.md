@@ -2,7 +2,7 @@
 
 ## Welcome! 👋
 
-- Live Site URL: [Here](https://saliou1920.github.io/weather-app/)
+- Live Site URL: [Here](https://saliou1920.github.io/Images-Gallery/)
 
 ## Table of contents 🙂
 
@@ -31,4 +31,4 @@ This is a web app that uses the Unplash API to display beautiful images. The goa
 
 ## Author
 
-- Linkedin - [@Saliou](https://www.linkedin.com/in/saliou-diop-527741112/)
+- Linkedin - [@Saliou](https://saliou1920.github.io/Images-Gallery/)
