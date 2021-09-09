@@ -9,10 +9,9 @@ function App() {
         <section className="flex justify-center">
             <div className="max-w-7xl">
                 <div className="text-center">
-                    <Images/>
+                    <Images/>                  
                 </div>
             </div>
-
         </section>
     );
 }

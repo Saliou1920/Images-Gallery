@@ -6,7 +6,7 @@ export default function Image({image, index, handleRemoveImage}) {
 
     return (
         
-        <div className="flex justify-center border border-3 p-1">
+        <div className="w-1/3 flex justify-center border border-3 p-1">
             <div key={index} className="relative"
                 onMouseEnter={() => setisHovering(true)} 
                 onMouseLeave={() => setisHovering(false)}
