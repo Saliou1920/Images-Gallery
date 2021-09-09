@@ -12,9 +12,9 @@ export default function useFetchImage(page, searchTerm) {
     console.log(searchTerm);
     useEffect(() => {
         setIsLoading(true);
-        axios.get(`${url}search/photos?client_id=${secret}&page=${page}&query=${searchTerm}`)
+        axios.get(`${url}photos?client_id=${secret}&page=${page}`)
         .then((res) => {
-            setImages([...images, ...res.data.results]);
+            setImages([...images, ...res.data]);
             setIsLoading(false);
     })
         .catch((err) => {
@@ -22,7 +22,21 @@ export default function useFetchImage(page, searchTerm) {
             setIsLoading(false);
         })
     
-    }, [page, searchTerm]);
+    }, [page]);
+
+    useEffect(() => {
+        if(searchTerm === null) return;
+        axios.get(`${url}search/photos?client_id=${secret}&page=${page}&query=${searchTerm}`)
+        .then((res) => {
+            setImages([...res.data.results]);
+            setIsLoading(false);
+    })
+        .catch((err) => {
+            setError(["Unable to fetch images"]);
+            setIsLoading(false);
+        })
+
+    }, [searchTerm]);
     
     return [images, setImages, error, isLoading];
 }
