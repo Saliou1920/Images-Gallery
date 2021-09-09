@@ -5,13 +5,14 @@ import Loading from './Loading';
 import useFetchImage from '../utils/hooks/useFetchImage';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Spinner } from 'react-bootstrap';
+import useDebounce from '../utils/hooks/useDebounce';
 
 export default function Images() {
     const [page, setPage] = useState(1);
     const [searchTerm, setSearchTerm] = useState(null);
 
     const [images, setImages, error, isLoading] = useFetchImage(page, searchTerm);
-
+    const debounce = useDebounce();
     function handleRemoveImage(index) {
         setImages(images.filter((image, i) => i !== index));
     }
@@ -33,15 +34,10 @@ export default function Images() {
         );
     }
 
-    const [typingTimeout, setTypingTimeout] = useState("")
     function handleInput(params) {
 
         const text = params.target.value;
-        clearTimeout(typingTimeout);
-        const timeout = setTimeout(() => {
-            setSearchTerm(text);
-        }, 1000);
-        setTypingTimeout(timeout);
+        debounce(() => {setSearchTerm(text);}, 1500);
     }
     if (isLoading) return <Loading />;
     return (
