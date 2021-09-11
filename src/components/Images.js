@@ -37,7 +37,7 @@ export default function Images() {
     function handleInput(params) {
 
         const text = params.target.value;
-        debounce(() => {setSearchTerm(text);}, 1500);
+        debounce(() => {setSearchTerm(text);}, 1000);
     }
     if (isLoading) return <Loading />;
     return (
