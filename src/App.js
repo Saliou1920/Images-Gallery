@@ -4,16 +4,10 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import "./assets/css/style.css"
 import Images from './components/Images';
 import Home from './page/Home';
+import Login from './page/Login';
 
 
-function Login() {
-    return (
-        <div className="flex h-screen">
-        <h1 className="m-auto text-3xl">Login Page</h1>
-    </div>
-    );
-    
-}
+
 function Gallery() {
     return (
         <section className="flex justify-center">
