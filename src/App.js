@@ -3,15 +3,9 @@ import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import "./assets/css/style.css"
 import Images from './components/Images';
+import Home from './page/Home';
 
-function Home() {
-    return (
-        <div className="flex h-screen">
-        <h1 className="m-auto text-3xl">Welcome Home</h1>
-    </div>
-    );
-    
-}
+
 function Login() {
     return (
         <div className="flex h-screen">
