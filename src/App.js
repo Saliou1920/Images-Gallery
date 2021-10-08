@@ -5,15 +5,23 @@ import "./assets/css/style.css"
 import Gallery from './page/Gallery';
 import Home from './page/Home';
 import Login from './page/Login';
+import routes from './utils/routes';
 
 function App() {
 
     return (
         <Router>
             <Switch>
-                <Route path="/" exact="true">
-                    <Home/>
-                </Route>
+                {
+                     routes.map((route) => (
+                        <Route 
+                            path={route.path} 
+                            exact={route.exact} 
+                            component={route.component}
+
+                        />
+                    ))
+                }
                 <Route path="/login">
                     <Login/>
                 </Route>
