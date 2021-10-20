@@ -13,7 +13,7 @@ function App() {
 
             <Switch>
                 {
-                     routes.map((route, index) => (
+                    routes.map((route, index) => (
                         <Route
                             key={index} 
                             path={route.path} 
