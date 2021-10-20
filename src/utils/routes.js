@@ -10,12 +10,10 @@ const routes =  [
     },
     {
         path: '/login',
-        exact: true,
         component: () => <Login/>
     },
     {
         path: '/gallery',
-        exact: true,
         component: () => <Gallery/>
     }
 ]
