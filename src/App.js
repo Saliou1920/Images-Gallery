@@ -21,7 +21,7 @@ function App() {
                             component={route.component}
                         />
                     ))
-                }                
+                }                 
             </Switch>
         </Router>
     );
