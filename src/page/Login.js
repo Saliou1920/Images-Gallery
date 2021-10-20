@@ -1,9 +1,22 @@
 import React from 'react'
+import { firebase } from "../config/firebase";
 
 export default function Login() {
     function handleForm(e) {
         e.preventDefault();
-        console.log("Submitted");
+        firebase.auth()
+        .signInWithEmailAndPassword("saliou@gmail.com", "Saliou")
+        .then((userCredential) => {
+        // Signed in
+        var user = userCredential.user;
+            console.log(user);
+        // ...
+        })
+        .catch((error) => {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+
+        });
     }
     return (
         <div className="flex h-screen bg-gray-200">
