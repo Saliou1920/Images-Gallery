@@ -1,21 +1,22 @@
 import React from 'react'
-import { firebase } from "../config/firebase";
-
+import app from '../config/firebase';
+import { getAuth, signInWithEmailAndPassword } from "../config/firebase/auth";
 export default function Login() {
     function handleForm(e) {
         e.preventDefault();
-        firebase.auth()
-        .signInWithEmailAndPassword("saliou@gmail.com", "Saliou")
+        
+
+        const auth = getAuth();
+        signInWithEmailAndPassword(auth, "saliou.gmail.com", "Saliou")
         .then((userCredential) => {
-        // Signed in
-        var user = userCredential.user;
+            // Signed in 
+            const user = userCredential.user;
+            // ...
             console.log(user);
-        // ...
         })
         .catch((error) => {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-
+            const errorCode = error.code;
+            const errorMessage = error.message;
         });
     }
     return (
