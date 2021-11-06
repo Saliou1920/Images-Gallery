@@ -1,19 +1,27 @@
-import React from "react";
-import app from "../config/firebase";
-import { getAuth, signInWithEmailAndPassword } from "../config/firebase/auth";
+import React, { useState } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../config/firebase.js";
+import Puff from "react-loading-icons/dist/components/puff";
+
 export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   function handleForm(e) {
     e.preventDefault();
-
-    const auth = getAuth();
-    const email = e.target.email.value;
-    const password = e.target.password.value;
-    signInWithEmailAndPassword(email, password)
+    setIsLoading(true);
+    // const auth = getAuth();
+    // const email = e.target.email.value;
+    // const password = e.target.password.value;
+    // console.log(email, password);
+    signInWithEmailAndPassword(auth, email, password)
       .then(() => {
         console.log("success");
+        setIsLoading(false);
       })
       .catch((error) => {
         console.log(error);
+        setIsLoading(false);
       });
   }
   return (
@@ -31,6 +39,7 @@ export default function Login() {
               type="email"
               className="p-2 rounded shadow w-full text-black"
               placeholder="Email or Username"
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
@@ -39,6 +48,7 @@ export default function Login() {
               type="password"
               className="p-2 rounded shadow w-full text-black"
               placeholder="Password"
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           <div className="w-full my-10">
@@ -46,7 +56,7 @@ export default function Login() {
               type="submit"
               className="p-2 rounded shadow w-full bg-yellow-400 text-black"
             >
-              Submit
+              {isLoading ? <Puff className="flex justify-center" /> : "Login"}
             </button>
           </div>
         </form>
