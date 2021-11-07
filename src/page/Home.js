@@ -1,10 +1,9 @@
-import React from 'react'
+import React from "react";
 
 export default function Home() {
-    return (
-        <div className="flex h-screen">
-        <h1 className="m-auto text-3xl">Welcome Home</h1>
+  return (
+    <div className="flex h-screen">
+      <h1 className="m-auto text-3xl">Welcome Home</h1>
     </div>
-    );
-    
+  );
 }

@@ -2,28 +2,33 @@ import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../config/firebase.js";
 import Puff from "react-loading-icons/dist/components/puff";
+import { useHistory } from "react-router";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+  const history = useHistory();
+
   function handleForm(e) {
+    if (isLoading) return;
     e.preventDefault();
     setIsLoading(true);
-    // const auth = getAuth();
-    // const email = e.target.email.value;
-    // const password = e.target.password.value;
-    // console.log(email, password);
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
+        history.push("/");
         console.log("success");
         setIsLoading(false);
+        setError("");
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error.message);
+        setError(error.message);
         setIsLoading(false);
       });
   }
+
   return (
     <div className="flex h-screen bg-gray-200">
       <div
@@ -31,6 +36,7 @@ export default function Login() {
                         justify-center shadow-lg bg-indigo-900"
       >
         <form className="m-5 w-10/12" onSubmit={handleForm}>
+          {error !== "" && <p className="text-center">{error}</p>}
           <h1 className="w-full text-4xl text-center my-6 tracking-widest">
             Login
           </h1>
