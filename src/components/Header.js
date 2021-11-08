@@ -1,26 +1,14 @@
-import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
-import { onAuthStateChanged } from "@firebase/auth";
+import React, { useContext } from "react";
+import { NavLink, useHistory } from "react-router-dom";
 import { auth } from "../config/firebase";
-import { useEffect } from "react";
+import Appcontext from "../store/AppContext";
 
 export default function Header() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const history = useHistory();
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setIsLoggedIn(true);
-      } else {
-        setIsLoggedIn(false);
-      }
-    });
-  }, []);
-
+  const [isLoggedIn, user] = useContext(Appcontext);
   function logout() {
     auth.signOut().then(() => {
       history.replace("/login");
-      setIsLoggedIn(false);
     });
   }
   return (
@@ -29,17 +17,23 @@ export default function Header() {
         <ul className="flex text-2xl justify-between px-10">
           <span className="flex">
             <li className="mx-5">
-              <Link to="/">Home</Link>
+              <NavLink to="/" exact activeClassName="underline">
+                Home
+              </NavLink>
             </li>
             <li className="mx-5">
-              <Link to="/gallery">Gallery</Link>
+              <NavLink to="/gallery" exact activeClassName="underline">
+                Gallery
+              </NavLink>
             </li>
           </span>
           <li>
             {isLoggedIn ? (
               <button onClick={logout}>Logout</button>
             ) : (
-              <Link to="/login">Login</Link>
+              <NavLink to="/login" exact activeClassName="underline">
+                Login
+              </NavLink>
             )}
           </li>
         </ul>
