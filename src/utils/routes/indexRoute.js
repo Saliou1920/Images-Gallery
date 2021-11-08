@@ -1,6 +1,7 @@
 import Gallery from "../../page/Gallery";
 import Home from "../../page/Home";
 import Login from "../../page/Login";
+import SignUp from "../../page/SignUp";
 
 const routes = [
   {
@@ -18,6 +19,11 @@ const routes = [
     path: "/gallery",
     component: () => <Gallery />,
     protected: "auth",
+  },
+  {
+    path: "/signup",
+    component: () => <SignUp />,
+    protected: "guest",
   },
 ];
 

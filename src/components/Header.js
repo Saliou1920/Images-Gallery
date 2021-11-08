@@ -5,32 +5,36 @@ import Appcontext from "../store/AppContext";
 
 export default function Header() {
   const history = useHistory();
-  const [isLoggedIn, user] = useContext(Appcontext);
+  const [isLoggedIn] = useContext(Appcontext);
   function logout() {
     auth.signOut().then(() => {
       history.replace("/login");
     });
   }
+
+  function signUp() {
+    history.replace("/signup");
+  }
   return (
     <div>
-      <nav className="py-7 bg-gray-900 text-white">
+      <nav className="py-7 bg-gray-900 text-white flex justify-between">
         <ul className="flex text-2xl justify-between px-10">
-          <span className="flex">
-            <li className="mx-5">
-              <NavLink to="/" exact activeClassName="underline text-yellow-200">
-                Home
-              </NavLink>
-            </li>
-            <li className="mx-5">
-              <NavLink
-                to="/gallery"
-                exact
-                activeClassName="underline text-yellow-200"
-              >
-                Gallery
-              </NavLink>
-            </li>
-          </span>
+          <li className="mx-5">
+            <NavLink to="/" exact activeClassName="underline text-yellow-200">
+              Home
+            </NavLink>
+          </li>
+          <li className="mx-5">
+            <NavLink
+              to="/gallery"
+              exact
+              activeClassName="underline text-yellow-200"
+            >
+              Gallery
+            </NavLink>
+          </li>
+        </ul>
+        <ul className="px-10 text-2xl flex">
           <li>
             {isLoggedIn ? (
               <button onClick={logout}>Logout</button>
@@ -44,6 +48,17 @@ export default function Header() {
               </NavLink>
             )}
           </li>
+          {!isLoggedIn && (
+            <li className="ml-5">
+              <NavLink
+                to="/signup"
+                exact
+                activeClassName="underline text-yellow-200"
+              >
+                Signup
+              </NavLink>
+            </li>
+          )}
         </ul>
       </nav>
     </div>
