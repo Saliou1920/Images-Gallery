@@ -17,12 +17,16 @@ export default function Header() {
         <ul className="flex text-2xl justify-between px-10">
           <span className="flex">
             <li className="mx-5">
-              <NavLink to="/" exact activeClassName="underline">
+              <NavLink to="/" exact activeClassName="underline text-yellow-200">
                 Home
               </NavLink>
             </li>
             <li className="mx-5">
-              <NavLink to="/gallery" exact activeClassName="underline">
+              <NavLink
+                to="/gallery"
+                exact
+                activeClassName="underline text-yellow-200"
+              >
                 Gallery
               </NavLink>
             </li>
@@ -31,7 +35,11 @@ export default function Header() {
             {isLoggedIn ? (
               <button onClick={logout}>Logout</button>
             ) : (
-              <NavLink to="/login" exact activeClassName="underline">
+              <NavLink
+                to="/login"
+                exact
+                activeClassName="underline text-yellow-200"
+              >
                 Login
               </NavLink>
             )}
