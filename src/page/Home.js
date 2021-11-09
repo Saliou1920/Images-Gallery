@@ -5,11 +5,12 @@ export default function Home() {
   return (
     <div className="flex h-screen">
       <motion.h1
-        animate={{ scale: 2 }}
+        initial={{ y: -450 }}
+        animate={{ scale: 1.5, y: 0 }}
         transition={{ duration: 0.5 }}
         className="m-auto text-4xl font-bold text-center"
       >
-        Welcome to the Home Page
+        Welcome Home
       </motion.h1>
     </div>
   );
